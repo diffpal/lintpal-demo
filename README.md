@@ -23,12 +23,12 @@ curl -i http://localhost:8080/orders \
 The committed `.lintpal/rules/` files come from the versioned [LintPal rule catalog](https://github.com/diffpal/lintpal-rules):
 
 ```bash
-lintpal rule import github:diffpal/lintpal-rules//general@v1.0.0
-lintpal rule import github:diffpal/lintpal-rules//go@v1.0.0
+lintpal rule import github:diffpal/lintpal-rules//general@v1.1.0
+lintpal rule import github:diffpal/lintpal-rules//go@v1.1.0
 lintpal rule validate
 ```
 
-This demo lowers the authorization and input-validation thresholds to `0.50` so the intentionally broken pull request remains a reliable feedback example. Production repositories should choose thresholds for their own gate policy.
+The catalog's `0.90` authorization and input-validation thresholds are calibrated against the live Jev demo case. Production repositories should choose thresholds for their own gate policy.
 
 ## Enable pull-request feedback
 
