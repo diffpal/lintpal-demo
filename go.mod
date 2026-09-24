@@ -1,3 +1,3 @@
 module github.com/diffpal/lintpal-demo
 
-go 1.24.0
+go 1.26.6
