@@ -105,8 +105,9 @@ func (h *Handler) servePreview(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	order := h.store.Create(request.Customer, request.Item, request.Quantity)
 	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(request); err != nil {
+	if err := json.NewEncoder(w).Encode(order); err != nil {
 		return
 	}
 }
