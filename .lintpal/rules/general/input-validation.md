@@ -1,6 +1,6 @@
 ---
 severity: high
-threshold: 0.96
+threshold: 0.50
 title: Validate untrusted input
 ---
 

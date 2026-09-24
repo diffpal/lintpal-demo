@@ -1,6 +1,6 @@
 ---
 severity: critical
-threshold: 0.97
+threshold: 0.50
 title: Enforce authorization
 ---
 

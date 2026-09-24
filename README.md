@@ -28,6 +28,8 @@ lintpal rule import github:diffpal/lintpal-rules//go@v1.0.0
 lintpal rule validate
 ```
 
+This demo lowers the authorization and input-validation thresholds to `0.50` so the intentionally broken pull request remains a reliable feedback example. Production repositories should choose thresholds for their own gate policy.
+
 ## Enable pull-request feedback
 
 1. Open **Settings → Secrets and variables → Actions**.
