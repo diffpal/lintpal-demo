@@ -1,4 +1,4 @@
-name: LintPal
+name: LintPal demo
 
 on:
   pull_request:
@@ -8,6 +8,21 @@ permissions:
   contents: read
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: false
+      - run: go test ./...
+      - run: go vet ./...
+      - name: Install released LintPal
+        run: go install github.com/diffpal/lintpal/cmd/lintpal@v0.4.1
+      - name: Validate repository rules
+        run: lintpal rule validate
+
   review:
     if: ${{ !github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
