@@ -19,7 +19,7 @@ jobs:
       - run: go test ./...
       - run: go vet ./...
       - name: Install released LintPal
-        run: go install github.com/diffpal/lintpal/cmd/lintpal@v0.4.1
+        run: go install github.com/diffpal/lintpal/cmd/lintpal@v0.5.0
       - name: Validate repository rules
         run: lintpal rule validate
 
@@ -38,7 +38,7 @@ jobs:
           node-version: 22
       - uses: diffpal/lintpal-action@v1
         with:
-          lintpal-version: "0.4.1"
+          lintpal-version: "0.5.0"
           base: ${{ github.event.pull_request.base.sha }}
           head: ${{ github.event.pull_request.head.sha }}
           block-on: high
