@@ -1,6 +1,6 @@
 # LintPal demo
 
-This repository demonstrates [LintPal](https://github.com/diffpal/lintpal) on a small Go HTTP service. The default branch is a passing baseline. The canonical pull request intentionally introduces authorization and input-validation violations so LintPal can publish inline findings and a deterministic gate result.
+This repository demonstrates [LintPal](https://github.com/diffpal/lintpal) on a small Go HTTP service. The default branch is a passing baseline. The [canonical pull request](https://github.com/diffpal/lintpal-demo/pull/3) intentionally introduces authorization and input-validation violations so LintPal can publish inline findings and a deterministic gate result.
 
 ## Run the service
 
@@ -34,7 +34,7 @@ The catalog's `0.90` authorization and input-validation thresholds are calibrate
 
 1. Open **Settings → Secrets and variables → Actions**.
 2. Add a repository secret named `TYPESAFE_API_KEY` containing the TypeSafe/Jev provider key.
-3. Re-run the LintPal workflow on the canonical pull request.
+3. Re-run the LintPal workflow on the [canonical pull request](https://github.com/diffpal/lintpal-demo/pull/3).
 
 The workflow uses GitHub's generated `GITHUB_TOKEN` only to publish the check result and inline comments. Provider credentials are environment variables, never Action inputs. A job-level same-repository guard prevents fork pull requests from reaching `TYPESAFE_API_KEY`.
 
