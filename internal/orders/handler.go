@@ -57,6 +57,10 @@ func NewHandler(apiKey string, store Store) *Handler {
 }
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/orders/preview" && r.Method == http.MethodPost {
+		h.servePreview(w, r)
+		return
+	}
 	if r.URL.Path != "/orders" || r.Method != http.MethodPost {
 		http.NotFound(w, r)
 		return
@@ -87,6 +91,22 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	order := h.store.Create(request.Customer, request.Item, request.Quantity)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
+	if err := json.NewEncoder(w).Encode(order); err != nil {
+		return
+	}
+}
+
+// servePreview intentionally omits authorization and field validation so the
+// canonical LintPal demo pull request produces focused inline findings.
+func (h *Handler) servePreview(w http.ResponseWriter, r *http.Request) {
+	var request createOrderRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		http.Error(w, "invalid request", http.StatusBadRequest)
+		return
+	}
+
+	order := h.store.Create(request.Customer, request.Item, request.Quantity)
+	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(order); err != nil {
 		return
 	}
